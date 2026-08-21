@@ -57,10 +57,20 @@ export function readEnv(): Env {
     clientSecret: clientSecret!,
     refreshToken: refreshToken!,
     folderId: folderId!,
-    sheetId: process.env.GUESTBOOK_SHEET_ID || undefined,
-    createGuestSubfolders: process.env.CREATE_GUEST_SUBFOLDERS !== "false",
-    maxFileBytes: Number(process.env.MAX_FILE_MB ?? 512) * 1024 * 1024,
+    sheetId: process.env.GUESTBOOK_SHEET_ID?.trim() || undefined,
+    createGuestSubfolders: process.env.CREATE_GUEST_SUBFOLDERS?.trim() !== "false",
+    maxFileBytes: positiveNumber(process.env.MAX_FILE_MB, 512) * 1024 * 1024,
   };
+}
+
+/**
+ * Порожня змінна оточення дала б Number("") === 0, а з нульовим лімітом
+ * сервер відхиляв би геть усі фото зі словами «більший за 0 МБ».
+ * Тому будь-що, крім додатного числа, вважаємо незаданим.
+ */
+function positiveNumber(value: string | undefined, fallback: number): number {
+  const parsed = Number(value?.trim());
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
 /* ------------------------------------------------------------------ */
