@@ -49,16 +49,23 @@ export default function Ambience({ petalCount = 14 }: { petalCount?: number }) {
       {/* Базовий градієнт сторінки */}
       <div className="absolute inset-0 bg-gradient-to-b from-ivory via-cream to-blush-50" />
 
-      {/* Дві плями, що дихають у протифазі */}
+      {/* Дві плями, що дихають у протифазі.
+
+          Тут навмисно НЕМАЄ filter: blur(). Раніше стояв blur-[90px] поверх
+          цього ж радіального градієнта — тобто розмиття робило те, що
+          градієнт уже зробив, але через офскрін-буфер, який Safari
+          перемальовує на кожному кадрі анімації. На iOS це вичерпувало
+          пам'ять GPU і вкладка вивантажувалась: з вигляду «екран білів».
+          М'якість дає сам градієнт — розтягнутий стоп робить край непомітним. */}
       <motion.div
-        className="absolute -left-[20%] top-[-10%] h-[70vmin] w-[70vmin] rounded-full blur-[90px]"
-        style={{ background: "radial-gradient(circle, #F8E7E2 0%, transparent 68%)" }}
+        className="absolute -left-[20%] top-[-10%] h-[70vmin] w-[70vmin] rounded-full"
+        style={{ background: "radial-gradient(circle, #F8E7E2 0%, rgba(248,231,226,0) 72%)" }}
         animate={reduce ? undefined : { scale: [1, 1.18, 1], x: [0, 40, 0], y: [0, 30, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -right-[15%] top-[35%] h-[60vmin] w-[60vmin] rounded-full blur-[90px]"
-        style={{ background: "radial-gradient(circle, #E1E9DC 0%, transparent 68%)" }}
+        className="absolute -right-[15%] top-[35%] h-[60vmin] w-[60vmin] rounded-full"
+        style={{ background: "radial-gradient(circle, #E1E9DC 0%, rgba(225,233,220,0) 72%)" }}
         animate={reduce ? undefined : { scale: [1.15, 1, 1.15], x: [0, -30, 0], y: [0, -40, 0] }}
         transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
       />

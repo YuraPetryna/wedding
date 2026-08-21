@@ -50,7 +50,7 @@ export default function SuccessOverlay({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.3 } }}
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-cream/92 px-6 py-16 backdrop-blur-xl"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-cream/98 px-6 py-16"
       role="status"
       aria-live="polite"
     >

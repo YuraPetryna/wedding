@@ -60,7 +60,7 @@ export default function FileCard({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-ink-900/45 backdrop-blur-[2px]"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-ink-900/55"
           >
             <ProgressRing progress={item.progress} />
             <span className="text-[11px] font-medium tabular-nums text-cream">
@@ -77,7 +77,7 @@ export default function FileCard({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center bg-sage-400/35 backdrop-blur-[1px]"
+            className="absolute inset-0 flex items-center justify-center bg-sage-400/45"
           >
             <motion.span
               initial={{ scale: 0, rotate: -25 }}
@@ -102,7 +102,7 @@ export default function FileCard({
             exit={{ opacity: 0 }}
             whileTap={tap}
             title={item.error}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-blush-500/80 px-2 text-center text-cream backdrop-blur-[1px]"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-blush-500/90 px-2 text-center text-cream"
           >
             <RetryIcon />
             <span className="text-[11px] font-medium">Повторити</span>
@@ -117,7 +117,7 @@ export default function FileCard({
           onClick={() => onRemove(item.id)}
           whileTap={tap}
           aria-label={`Прибрати ${item.file.name}`}
-          className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-ink-900/55 text-cream opacity-0 backdrop-blur-sm transition-opacity duration-200 focus-visible:opacity-100 group-hover:opacity-100 max-md:opacity-100"
+          className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-ink-900/70 text-cream opacity-0 transition-opacity duration-200 focus-visible:opacity-100 group-hover:opacity-100 max-md:opacity-100"
         >
           <CloseIcon />
         </motion.button>

@@ -90,7 +90,7 @@ export default function Dropzone({
           backgroundColor: dragging ? "rgba(253,244,242,0.9)" : "rgba(255,255,255,0.55)",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 26 }}
-        className={`relative flex flex-col items-center justify-center rounded-3xl border-2 border-dashed backdrop-blur-sm ${
+        className={`relative flex flex-col items-center justify-center rounded-3xl border-2 border-dashed ${
           compact ? "gap-3 px-5 py-6" : "gap-4 px-6 py-10"
         }`}
       >

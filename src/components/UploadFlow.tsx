@@ -397,7 +397,7 @@ export default function UploadFlow({ anchorId }: { anchorId: string }) {
             transition={{ type: "spring", stiffness: 320, damping: 32 }}
             className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3"
           >
-            <div className="mx-auto flex w-full max-w-xl items-center gap-3 rounded-full border border-white/70 bg-white/85 p-2 pl-5 shadow-lift backdrop-blur-xl">
+            <div className="mx-auto flex w-full max-w-xl items-center gap-3 rounded-full border border-white/70 bg-white/95 p-2 pl-5 shadow-lift">
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-ink-800">
                   {busy
