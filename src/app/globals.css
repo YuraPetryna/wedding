@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page: 251 247 242;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-cream text-ink-800 font-sans antialiased;
+    /* Запобігає «стрибку» вниз через iOS bounce на градієнтному тлі. */
+    overscroll-behavior-y: none;
+  }
+
+  ::selection {
+    background: #f0d2ca;
+    color: #38312d;
+  }
+
+  /* Поважаємо системне «зменшити рух»: анімації стають миттєвими. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* М'яка «паперова» картка — базовий будівельний блок сайту. */
+  .card-soft {
+    @apply rounded-3xl border border-white/70 bg-white/70 shadow-soft backdrop-blur-xl;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border border-blush-100 bg-white/80 px-4 py-3.5 text-base
+           text-ink-800 placeholder-ink-400/70 outline-none transition-all duration-300
+           focus:border-blush-300 focus:bg-white focus:ring-4 focus:ring-blush-100/60;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full
+           bg-ink-800 px-8 py-4 text-base font-medium tracking-wide text-cream
+           shadow-lift transition-colors duration-300 disabled:cursor-not-allowed
+           disabled:bg-ink-400 disabled:shadow-soft;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-blush-200
+           bg-white/70 px-6 py-3.5 text-sm font-medium text-ink-600 transition-colors
+           duration-300 hover:border-blush-300 hover:text-ink-800;
+  }
+
+  /* Тонка золота лінія-роздільник. */
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold-300 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Ледь помітне зерно поверх пастелі — забирає «пластиковість» градієнтів. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
